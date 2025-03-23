@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- SEO Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Predict school snow days with our accurate Snow Day Calculator. Get real-time predictions based on weather conditions and school type.">
+    <meta name="keywords" content="snow day calculator, school closure predictor, winter weather tool, snow day predictor">
+    <meta name="author" content="Your Name/Company">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Snow Day Calculator",
+        "description": "Advanced tool for predicting school closures due to snow conditions",
+        "url": "https://yourdomain.com",
+        "author": {
+            "@type": "Organization",
+            "name": "Your Company"
+        }
+    }
+    </script>
+    
+    <title>Snow Day Calculator - Predict School Closures</title>
+    
+    <!-- Responsive CSS -->
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background: #f0f8ff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .ad-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .calculator {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+            
+            button {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Ad -->
+        <div class="ad-container">
+            <!-- Replace ADSENSE_UNIT_ID_1 with your AdSense Unit ID -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+                crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                data-ad-slot="ADSENSE_UNIT_ID_1"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <div class="calculator">
+            <div>
+                <h1>Snow Day Calculator</h1>
+                <div class="input-group">
+                    <label for="temperature">Temperature (°F):</label>
+                    <input type="number" id="temperature" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label for="snowfall">Snowfall (inches):</label>
+                    <input type="number" id="snowfall" step="0.1">
+                </div>
+            </div>
+            <div>
+                <div class="input-group">
+                    <label for="windSpeed">Wind Speed (mph):</label>
+                    <input type="number" id="windSpeed" step="1">
+                </div>
+                <div class="input-group">
+                    <label for="schoolType">School Type:</label>
+                    <select id="schoolType">
+                        <option value="public">Public School</option>
+                        <option value="private">Private School</option>
+                        <option value="university">University</option>
+                    </select>
+                </div>
+                <button onclick="calculateSnowDay()">Calculate Probability</button>
+            </div>
+        </div>
+
+        <div class="result" id="result"></div>
+
+        <!-- Footer Ad -->
+        <div class="ad-container">
+            <!-- Replace ADSENSE_UNIT_ID_2 with your AdSense Unit ID -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+                crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                data-ad-slot="ADSENSE_UNIT_ID_2"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <script>
+        function calculateSnowDay() {
+            const temperature = parseFloat(document.getElementById('temperature').value);
+            const snowfall = parseFloat(document.getElementById('snowfall').value);
+            const windSpeed = parseFloat(document.getElementById('windSpeed').value);
+            const schoolType = document.getElementById('schoolType').value;
+            
+            // Calculation logic (simplified example)
+            let probability = 0;
+            
+            // Temperature weight (30%)
+            if (temperature < 20) probability += 30;
+            else if (temperature < 32) probability += 15;
+            
+            // Snowfall weight (50%)
+            if (snowfall >= 12) probability += 50;
+            else if (snowfall >= 6) probability += 30;
+            else if (snowfall >= 3) probability += 15;
+            
+            // Wind speed weight (20%)
+            if (windSpeed >= 35) probability += 20;
+            else if (windSpeed >= 20) probability += 10;
+            
+            // School type modifier
+            const schoolModifiers = {
+                'public': 1.0,
+                'private': 0.8,
+                'university': 0.6
+            };
+            
+            probability *= schoolModifiers[schoolType];
+            probability = Math.min(100, Math.round(probability));
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <h3>Snow Day Probability: ${probability}%</h3>
+                <p>Based on current conditions:</p>
+                <ul>
+                    <li>Temperature: ${temperature}°F</li>
+                    <li>Snowfall: ${snowfall}"</li>
+                    <li>Wind Speed: ${windSpeed}mph</li>
+                    <li>School Type: ${schoolType}</li>
+                </ul>
+            `;
+        }
+
+        // Input validation
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value < 0) e.target.value = 0;
+            });
+        });
+    </script>
+</body>
+</html>
